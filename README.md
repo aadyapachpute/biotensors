@@ -1,63 +1,36 @@
-# Bioinformatics CLI pipeline
+# BIOTENSORS
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
 ![Bioinformatics](https://img.shields.io/badge/Field-Bioinformatics-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 
-A Python-based bioinformatics pipeline for retrieving gene sequences from NCBI, analyzing nucleotide composition, extracting annotated CDS proteins, and generating mutation analysis reports.
+An open-source computational biology pipeline bridging biological sequence analysis with numerical linear algebra, structural data parsing, and modular Python engineering.
 
 ## Overview
 
-`biotech-tools` is a beginner-friendly computational biology project built to explore how real biological sequence data can be accessed, processed, and analyzed using Python.
+`biotensors` is a first-principles computational biology pipeline built to process, analyze, and map biological sequence and structural data without relying on heavy black-box abstractions. 
 
-Starting from a gene name such as `TP53`, `KRAS`, or `BRCA1`, the pipeline searches NCBI, retrieves RefSeq mRNA records, performs sequence-level analysis, extracts annotated CDS protein information from GenBank records, and generates structured output files for downstream interpretation.
+Starting from NCBI RefSeq accession queries, the pipeline executes manual sequence parsing, GC content distribution metrics, GenBank CDS extraction, and 3D structural distance matrix calculations.
 
-The project is educational and research-oriented. It is not intended for clinical diagnosis, treatment decisions, or medical interpretation.
+*Note: This project is built for educational, research, and portfolio development purposes.*
 
 ## Features
 
-* Gene search using the NCBI Entrez API
-* RefSeq mRNA filtering for `NM_` accessions
-* FASTA sequence retrieval and export
-* Nucleotide composition analysis
-* GC content calculation
-* Start and stop codon detection
-* Longest open reading frame detection
-* GenBank record retrieval
-* Annotated CDS extraction
-* Official protein sequence extraction from GenBank CDS features
-* Known mutation site checking using a small curated mutation database
-* Text-based mutation report generation
-* CSV summary export for multiple genes
-* CLI support for single-gene and multi-gene workflows
-* GC content visualization across selected cancer-associated genes
+* Programmatic gene and mRNA sequence retrieval via NCBI Entrez APIs (`requests`)
+* Manual FASTA file parsing and nucleotide composition analysis
+* GC content calculation and comparative Matplotlib visualizations
+* GenBank record ingestion and annotated CDS extraction
+* Structural bioinformatics: PDB file coordinate parsing ($x, y, z$)
+* Pairwise Euclidean distance matrix generation for residue-to-residue spatial analysis
+* Structured CLI entry points via `argparse`
+* Automated testing architecture via `pytest`
 
-## Why CDS extraction matters
-
-Earlier versions of this project used the longest ORF as a proxy for protein translation. This is useful for learning, but it can produce incorrect protein coordinates for mutation analysis.
-
-The current version improves this by extracting the annotated CDS protein from GenBank records when available.
-
-This allows mutation positions such as TP53 R175H or R248Q to be checked against the correct annotated protein sequence instead of a guessed longest ORF.
-
-Current logic:
-
-```text
-Gene name
-→ NCBI search
-→ RefSeq mRNA selection
-→ FASTA sequence analysis
-→ GenBank CDS extraction
-→ Annotated protein sequence
-→ Mutation report
-→ CSV summary
-```
 
 ## Project structure
 
 ```text
-biotech-tools/
+biotensors/
 ├── data/
 │   ├── BRCA1.fasta
 │   ├── KRAS.fasta
@@ -101,8 +74,8 @@ Additional concept notes are available in [`docs/concepts.md`](docs/concepts.md)
 Clone the repository:
 
 ```bash
-git clone https://github.com/aadya2909/biotech-tools.git
-cd biotech-tools
+git clone [https://github.com/aadyapachpute/biotensors.git](https://github.com/aadyapachpute/biotensors.git)
+cd biotensors
 ```
 
 Install dependencies:
@@ -114,8 +87,10 @@ pip install -r requirements.txt
 Main dependencies:
 
 ```text
-biopython
+pandas
+requests
 matplotlib
+pytest
 ```
 
 ## Usage
@@ -218,61 +193,10 @@ Output:
 data/gc_content_comparison.png
 ```
 
-## Current mutation database
-
-The mutation database is intentionally small and educational. It currently includes selected known mutation sites for genes such as:
-
-* TP53
-* KRAS
-
-The database is stored in:
-
-```text
-src/mutations/known_mutations.py
-```
-
-This can be expanded in future versions with more genes, mutation annotations, and external references.
-
-
-## Limitations
-
-This project is not a clinical tool.
-
-Important limitations:
-
-* Mutation checking is based on a small manually defined mutation database.
-* The tool does not analyze patient sequencing data.
-* It does not detect novel mutations from raw sequencing files.
-* It does not perform variant calling.
-* It does not provide diagnosis, prognosis, or treatment guidance.
-* Biological interpretation is simplified for learning purposes.
-
-The project is intended for education, portfolio development, and practical learning in bioinformatics.
-
-
-## What I learned
-
-This project helped me practice:
-
-* Python programming
-* Working with biological sequence data
-* Using Biopython and NCBI Entrez
-* Understanding FASTA and GenBank formats
-* RefSeq accession filtering
-* GC content analysis
-* ORF detection
-* CDS extraction
-* Protein translation concepts
-* Basic mutation annotation
-* CLI tool development
-* File handling and CSV export
-* Git and GitHub project management
 
 ## Author
 
-Aadya
-BSc Biotechnology student exploring bioinformatics, computational biology, and the intersection of biology, data, and code.
+Aadya Pachpute
 
-GitHub: [aadya2909](https://github.com/aadya2909)
 
 
