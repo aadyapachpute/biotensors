@@ -27,4 +27,5 @@ jobs:
 
     - name: Run test suite with pytest
       run: |
-        pytest
+        python -m pytest
+        
